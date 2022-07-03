@@ -82,6 +82,7 @@ JOHNSON COUNTER</br>
 SCREEN SHOT OF THE OUTPUT</br>
 
 RING COUNTER</br>
+
 Command Prompt:</br>
 ![image](https://user-images.githubusercontent.com/54111265/177045112-4061b7bf-325b-49d5-b7dc-4cceb6e28b00.png)
 
