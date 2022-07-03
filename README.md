@@ -1,8 +1,7 @@
 # DDCO_Mini_Project
-DESIGN AND IMPLEMENTATION OF A RING AND JOHNSON COUNTER WITH CONTROL LOGIC
+DESIGN AND IMPLEMENTATION OF A RING AND JOHNSON COUNTER WITH CONTROL LOGIC</br>
 
-
-ABSTRACT OF THE PROJECT
+ABSTRACT OF THE PROJECT</br>
 
 
 INTRODUCTION</br>
@@ -10,26 +9,23 @@ INTRODUCTION</br>
 
 
 
-RING COUNTER 
- ![image](https://user-images.githubusercontent.com/54111265/177044803-3a488a3e-85df-4b64-b2ad-ac9588f316f7.png)
+RING COUNTER</br>
+ ![image](https://user-images.githubusercontent.com/54111265/177044803-3a488a3e-85df-4b64-b2ad-ac9588f316f7.png)</br>
          A ring counter is also known as SISO (serial in serial out) shift register counter where the output of the flip flop is connected to the input of the flip flop. The designing of the ring counter can be done by using four D-Flip Flops with a common clock signal and overriding input can be connected to pre-set and clear. The main function of pre-set and clear is to change the output value when the input clock signal changes. Based on these signals they operate in ring format hence it is called a ring counter. The number of states is the number of flip flops used. Ring counter is a typical application of Shift resister. Ring counter is almost same as the shift counter. The only change is that the output of the last flip-flop is connected to the input of the first flip-flop in case of ring counter but in case of shift resister it is taken as output. Except this all the other things are same.
 
 
 
 
+JOHNSON RING COUNTER </br>
+                         ![image](https://user-images.githubusercontent.com/54111265/177045012-fc7bf4fe-2391-4e85-b8e4-dcae44137c95.png)</br>
+The Johnson Ring Counter, also called the Twisted Ring Counter is a shift  register with feedback exactly the same as the standard Ring Counter, except that the inverted output of the last flip-flop is connected back to the input of the first flip-flop. Unlike the standard ring counter, it only needs half the number of flip-flops and its modulo number is halved. So a n-stage Johnson counter will circulate a single bit of data giving a sequence of 2n different states and can therefore be considered as a mod-2n counter. Johnson Ring Counter is nothing but Johnson Counter. The Johnson Ring Counter consists of a number of counters connected together with the output fed back to the input.</br>
 
 
+WORKING</br>
 
-JOHNSON RING COUNTER 
-                                                                                                                        ![image](https://user-images.githubusercontent.com/54111265/177045012-fc7bf4fe-2391-4e85-b8e4-dcae44137c95.png)
-The Johnson Ring Counter, also called the Twisted Ring Counter is a shift  register with feedback exactly the same as the standard Ring Counter, except that the inverted output of the last flip-flop is connected back to the input of the first flip-flop. Unlike the standard ring counter, it only needs half the number of flip-flops and its modulo number is halved. So a n-stage Johnson counter will circulate a single bit of data giving a sequence of 2n different states and can therefore be considered as a mod-2n counter. Johnson Ring Counter is nothing but Johnson Counter. The Johnson Ring Counter consists of a number of counters connected together with the output fed back to the input.
-
-
-WORKING
-
-RING COUNTER 
-	Consider QA, QB, QC, QD as the 4 bits of the ring counter. The truth table for the 4-bit ring counter is given below.
-![image](https://user-images.githubusercontent.com/54111265/177045050-8c6d44a2-c174-4ac3-a0d9-d0cb01dc475b.png)
+RING COUNTER </br>
+	Consider QA, QB, QC, QD as the 4 bits of the ring counter. The truth table for the 4-bit ring counter is given below.</br>
+![image](https://user-images.githubusercontent.com/54111265/177045050-8c6d44a2-c174-4ac3-a0d9-d0cb01dc475b.png)</br>
 
 
    In the ring counter, logic ‘1’ flows through all stages of the counter. In each state, it flows one bit to the right. When it reaches stage 4, it circulates back to stage 1 of the counter. Ring counter’s state needs to be set before the operation. Since the ring counter circulates 1 through all stages, and there are no external inputs except the clock signal. So we need to set its state to initial state 1000 manually. We set the first stage flip-flop and clear the rest of the stages to obtain the state 1000. The preset input pin is designed to do this function.
@@ -44,7 +40,8 @@ Now upon the next clock cycle, ‘1’ from the last stage (flip-flop) will shif
 And it starts again from the first state repeating itself considering the clock signal is provided. 
 This is how the data inside the ring counter circulates in the ring. Ring counter divides the frequency of the clock signal by ‘n’ where n is the bit size of the ring counter. So the ring counter can be used as a frequency divider.
 
-JOHNSON COUNTER
+
+JOHNSON COUNTER</br>
 	Consider a 4-bit Johnson counter with QA, QB, QC, QD as the output of 4 stages of the counter. The truth table of the 4-bit Johnson counter is given below.
 
 
@@ -69,43 +66,36 @@ Eventually, it reaches its default state and it starts from the beginning again.
 
 
 
+CIRCUIT DIAGRAM</br>
 
-CIRCUIT DIAGRAM
 
-
-RING COUNTER
+RING COUNTER</br>
  ![image](https://user-images.githubusercontent.com/54111265/177045083-7973fa7d-1ece-4832-a12e-7f21033769d2.png)
 
 
-JOHNSON COUNTER
+JOHNSON COUNTER</br>
  
 ![image](https://user-images.githubusercontent.com/54111265/177045089-8cae1640-84c2-4c53-9cfa-d8eda322e6d4.png)
 
 
 
-SCREEN SHOT OF THE OUTPUT
+SCREEN SHOT OF THE OUTPUT</br>
 
-RING COUNTER
+RING COUNTER</br>
+Command Prompt:</br>
 ![image](https://user-images.githubusercontent.com/54111265/177045112-4061b7bf-325b-49d5-b7dc-4cceb6e28b00.png)
 
-COMMAND PROMPT:
 
- ![image](https://user-images.githubusercontent.com/54111265/177045116-07c77e2a-16b4-4dc8-8289-16c53ac39229.png)
+Gtkwaveform:</br>
+![image](https://user-images.githubusercontent.com/54111265/177045116-07c77e2a-16b4-4dc8-8289-16c53ac39229.png)
 
- 
 
-GTKWAVEFORM:
+JOHNSON COUNTER</br>
 
- 
-		
-JOHNSON COUNTER
-
-COMMAND PROMPT:
+Command Prompt:</br>
 ![image](https://user-images.githubusercontent.com/54111265/177045121-df774eaf-1f6e-4c4d-9ced-80cfbec757a8.png)
 
- 
 
-
-GTKWAVEFORM:
+Gtkwaveform:</br>
 ![image](https://user-images.githubusercontent.com/54111265/177045126-9d043ffa-e1ed-43ab-90ae-38b270bfb4a9.png)
 
