@@ -21,39 +21,18 @@ RING COUNTER
 
 
 JOHNSON RING COUNTER 
- 
-	The Johnson Ring Counter, also called the Twisted Ring Counter is a shift  register with feedback exactly the same as the standard Ring Counter, except that the inverted output of the last flip-flop is connected back to the input of the first flip-flop. Unlike the standard ring counter, it only needs half the number of flip-flops and its modulo number is halved. So a n-stage Johnson counter will circulate a single bit of data giving a sequence of 2n different states and can therefore be considered as a mod-2n counter. Johnson Ring Counter is nothing but Johnson Counter. The Johnson Ring Counter consists of a number of counters connected together with the output fed back to the input.
-
-Difference between Ring Type Counter and Johnson Type Counter:
-Ring Counter 	Johnson Counter
-
-The output of the last flip flop is given as
-input to the starting flip flop. 	The output of the last flip flop is inverted and given as input to the starting flip flop. 
-
-Number of states is the number of flip flops used. 
-	Number of states is half the number of flip flops used. 
-
-Input frequency = n 
-Output frequency = f/n 	Input frequency = f 
-Output frequency = f/2n 
-Total unused states = ( 2n – n)	Total unused states = ( 2n – 2n) 
-
-
-
-There are multiple applications of these counters such as Frequency counter, ADC, Digital clocks, Generating staircase voltage, Washing machine, Alarm clocks, Measure timers and rate, etc. 
-
-In this project we explore the Design & implementation of a Ring and Johnson Counter with control logic using verilog along with the circuit diagram and waveform.
-
+                                                                                                                        ![image](https://user-images.githubusercontent.com/54111265/177045012-fc7bf4fe-2391-4e85-b8e4-dcae44137c95.png)
+The Johnson Ring Counter, also called the Twisted Ring Counter is a shift  register with feedback exactly the same as the standard Ring Counter, except that the inverted output of the last flip-flop is connected back to the input of the first flip-flop. Unlike the standard ring counter, it only needs half the number of flip-flops and its modulo number is halved. So a n-stage Johnson counter will circulate a single bit of data giving a sequence of 2n different states and can therefore be considered as a mod-2n counter. Johnson Ring Counter is nothing but Johnson Counter. The Johnson Ring Counter consists of a number of counters connected together with the output fed back to the input.
 
 
 WORKING
 
 RING COUNTER 
 	Consider QA, QB, QC, QD as the 4 bits of the ring counter. The truth table for the 4-bit ring counter is given below.
+![image](https://user-images.githubusercontent.com/54111265/177045050-8c6d44a2-c174-4ac3-a0d9-d0cb01dc475b.png)
 
- 
 
-	In the ring counter, logic ‘1’ flows through all stages of the counter. In each state, it flows one bit to the right. When it reaches stage 4, it circulates back to stage 1 of the counter. Ring counter’s state needs to be set before the operation. Since the ring counter circulates 1 through all stages, and there are no external inputs except the clock signal. So we need to set its state to initial state 1000 manually. We set the first stage flip-flop and clear the rest of the stages to obtain the state 1000. The preset input pin is designed to do this function.
+   In the ring counter, logic ‘1’ flows through all stages of the counter. In each state, it flows one bit to the right. When it reaches stage 4, it circulates back to stage 1 of the counter. Ring counter’s state needs to be set before the operation. Since the ring counter circulates 1 through all stages, and there are no external inputs except the clock signal. So we need to set its state to initial state 1000 manually. We set the first stage flip-flop and clear the rest of the stages to obtain the state 1000. The preset input pin is designed to do this function.
  
 Whenever the first clock edge hits the counter the outputs of each stage shifts to the next succeeding stage. And the output of the last will shift to the first stage making the state 0100. 
 Upon the next clock cycle, each stage will update its state according to its input. So the ‘1’ will be shifted to the third stage making the state 0010. 
@@ -70,9 +49,10 @@ JOHNSON COUNTER
 
 
  
+![image](https://user-images.githubusercontent.com/54111265/177045068-57dbeb16-7904-49a8-aa69-db8525453af8.png)
 
 
-	The output of each flip-flop is connected with the input of the succeeding flip-flop. The complemented output of the last flip-flop is connected with the input of the first flip-flop. It is also called the Inverse Feedback Counter or Twisted Ring Counter. The Same clock input is connected with all flip-flops. There is clear input for resetting the state to default 0000. 
+   The output of each flip-flop is connected with the input of the succeeding flip-flop. The complemented output of the last flip-flop is connected with the input of the first flip-flop. It is also called the Inverse Feedback Counter or Twisted Ring Counter. The Same clock input is connected with all flip-flops. There is clear input for resetting the state to default 0000. 
 
 The default state of Johnson counter is 0000 thus before starting the clock input we need to clear the counter using clear input. 
 
@@ -94,150 +74,24 @@ CIRCUIT DIAGRAM
 
 
 RING COUNTER
+ ![image](https://user-images.githubusercontent.com/54111265/177045083-7973fa7d-1ece-4832-a12e-7f21033769d2.png)
+
+
+JOHNSON COUNTER
  
-
-JOHNSON COUNTER
- 
-
-
-
-MAIN VERILOG CODE
-
-
-RING COUNTER
-
-module ring_counter (input clk, clr, output [3:0] out);
-reg[3:0] cnt;
-always @(posedge clk)
-	if (clr)
-		cnt = 4'b0001;
-	else
-	begin
-		cnt <= cnt<<1;
-		cnt[0] <= cnt[3];
-	end
-	assign out=cnt;
-	endmodule	
-
-
-
-JOHNSON COUNTER
-
-module johnson_counter(clk, clr, out);
-input clk,clr;
-output [3:0] out;
-reg [3:0] dff;
-always @(posedge clk)
-begin
-	if(clr)
-		dff=4'b0000;
-	else
-	begin
-		dff[3]<=dff[2];
-		dff[2]<=dff[1];
-		dff[1]<=dff[0];
-		dff[0]<=(~dff[3]);
-	end
-end
-assign out = dff;
-endmodule
-
-
-
-
-
-TEST BENCH FILE
-
-RING COUNTER
-
-`timescale 1ns / 1ps
-module tb_ring_counter;
-reg clk;
-reg clr;
-wire[3:0] out;
-
-initial
-begin 
-$dumpfile("ring_counter.vcd");
-$dumpvars(0,tb_ring_counter); 
-end
-
-ring_counter r1 ( .clk(clk), .clr(clr), .out(out));
-always #10 clk = ~clk;
-initial 
-begin
-clk = 0;
-clr = 0;
-#5 clr = 1;
-#20 clr = 0;
-#250 $finish;
-end
-
-initial 
-begin
-$monitor($time,"clear=%1b,clock=%1b,count=%4b",clr,clk,out);
-end
-
-endmodule
-
-JOHNSON COUNTER
-
-module tb_johnson_counter;
-reg clk,clr;
-wire [3:0] out;
-
-initial
-begin
-$dumpfile("johnson_counter.vcd");
-$dumpvars(0,tb_johnson_counter);
-end
-
-johnson_ctr j (.out(out), .clr(clr), .clk(clk));
-always
-#5 clk =~clk;
-initial
-begin
-clr=1'b1; clk=1'b0;
-#20 clr= 1'b0;
-end
-
-initial
-begin
-$monitor( $time, "clr=%b, clk=%b, out= %b", clr,clk,out);
-#105 $finish;
-end
-
-endmodule
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/54111265/177045089-8cae1640-84c2-4c53-9cfa-d8eda322e6d4.png)
 
 
 
 SCREEN SHOT OF THE OUTPUT
 
 RING COUNTER
+![image](https://user-images.githubusercontent.com/54111265/177045112-4061b7bf-325b-49d5-b7dc-4cceb6e28b00.png)
 
 COMMAND PROMPT:
 
- 
+ ![image](https://user-images.githubusercontent.com/54111265/177045116-07c77e2a-16b4-4dc8-8289-16c53ac39229.png)
+
  
 
 GTKWAVEFORM:
@@ -247,9 +101,11 @@ GTKWAVEFORM:
 JOHNSON COUNTER
 
 COMMAND PROMPT:
+![image](https://user-images.githubusercontent.com/54111265/177045121-df774eaf-1f6e-4c4d-9ced-80cfbec757a8.png)
 
  
 
 
 GTKWAVEFORM:
+![image](https://user-images.githubusercontent.com/54111265/177045126-9d043ffa-e1ed-43ab-90ae-38b270bfb4a9.png)
 
