@@ -5,14 +5,14 @@ DESIGN AND IMPLEMENTATION OF A RING AND JOHNSON COUNTER WITH CONTROL LOGIC
 ABSTRACT OF THE PROJECT
 
 
-INTRODUCTION
-	Counters are sequential circuits whose function is to count pulse, frequency and time of the signal using a clock signal. They are designed by grouping various flip flops together. Counters operate in different modes of modules, which are represented by the number of states of the cycle. There are two types of counter, they are synchronous and asynchronous counters. The synchronous counter depends on the input clock signal whereas the asynchronous counter does not. The synchronous counter is a shift register counter which is further classified as a ring-type and twisted type ring counter (Johnson counter). 
+INTRODUCTION</br>
+         Counters are sequential circuits whose function is to count pulse, frequency and time of the signal using a clock signal. They are designed by grouping various flip flops together. Counters operate in different modes of modules, which are represented by the number of states of the cycle. There are two types of counter, they are synchronous and asynchronous counters. The synchronous counter depends on the input clock signal whereas the asynchronous counter does not. The synchronous counter is a shift register counter which is further classified as a ring-type and twisted type ring counter (Johnson counter). 
 
 
 
 RING COUNTER 
- 
-	A ring counter is also known as SISO (serial in serial out) shift register counter where the output of the flip flop is connected to the input of the flip flop. The designing of the ring counter can be done by using four D-Flip Flops with a common clock signal and overriding input can be connected to pre-set and clear. The main function of pre-set and clear is to change the output value when the input clock signal changes. Based on these signals they operate in ring format hence it is called a ring counter. The number of states is the number of flip flops used. Ring counter is a typical application of Shift resister. Ring counter is almost same as the shift counter. The only change is that the output of the last flip-flop is connected to the input of the first flip-flop in case of ring counter but in case of shift resister it is taken as output. Except this all the other things are same.
+ ![image](https://user-images.githubusercontent.com/54111265/177044803-3a488a3e-85df-4b64-b2ad-ac9588f316f7.png)
+         A ring counter is also known as SISO (serial in serial out) shift register counter where the output of the flip flop is connected to the input of the flip flop. The designing of the ring counter can be done by using four D-Flip Flops with a common clock signal and overriding input can be connected to pre-set and clear. The main function of pre-set and clear is to change the output value when the input clock signal changes. Based on these signals they operate in ring format hence it is called a ring counter. The number of states is the number of flip flops used. Ring counter is a typical application of Shift resister. Ring counter is almost same as the shift counter. The only change is that the output of the last flip-flop is connected to the input of the first flip-flop in case of ring counter but in case of shift resister it is taken as output. Except this all the other things are same.
 
 
 
